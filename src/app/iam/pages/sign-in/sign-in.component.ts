@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MatError, MatFormField} from '@angular/material/form-field';
+import {MatError, MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} from '@angular/material/card';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgIf} from '@angular/common';
@@ -8,6 +8,7 @@ import {MatButton} from '@angular/material/button';
 import {BaseFormComponent} from '../../../shared/components/base-form.component';
 import {AuthenticationService} from '../../services/authentication.service';
 import {SignInRequest} from '../../model/sign-in.request';
+import {Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -20,10 +21,12 @@ import {SignInRequest} from '../../model/sign-in.request';
     MatCardTitle,
     MatCardHeader,
     MatCard,
+    MatLabel,
     ReactiveFormsModule,
     NgIf,
     MatInput,
-    MatButton
+    MatButton,
+    RouterLink
   ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
@@ -32,9 +35,10 @@ export class SignInComponent extends BaseFormComponent implements OnInit {
   form!: FormGroup;
   submitted = false;
 
-  constructor(private builder: FormBuilder, private authenticationService: AuthenticationService) {
+  constructor(private builder: FormBuilder, private authenticationService: AuthenticationService, private router: Router) {
     super();
   }
+
   ngOnInit(): void {
     this.form = this.builder.group({
       username: ['', Validators.required],
@@ -48,9 +52,7 @@ export class SignInComponent extends BaseFormComponent implements OnInit {
     let password = this.form.value.password;
     const signInRequest = new SignInRequest(username, password);
     this.authenticationService.signIn(signInRequest);
-    this.submitted = true;
   }
-
 }
 
 

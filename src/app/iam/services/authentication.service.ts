@@ -36,18 +36,12 @@ export class AuthenticationService {
   get currentUsername() {
     return this.signedInUsername.asObservable();
   }
-
-  /**
-   * Sign up a new user
-   * @param signUpRequest - The sign-up request containing the username and password
-   * @returns - The sign-up response containing the user id and username
-   */
   signUp(signUpRequest: SignUpRequest) {
     return this.http.post<SignUpResponse>(`${this.basePath}/authentication/sign-up`, signUpRequest, this.httpOptions)
       .subscribe( {
         next: (response) => {
           console.log(`Signed up as ${response.username} with id ${response.id}`);
-          this.router.navigate(['login/passenger']).then();
+          this.router.navigate(['/sign-in']).then();
         },
         error: (error) => {
           console.error(`Error while signing up: ${error}`);
@@ -55,12 +49,6 @@ export class AuthenticationService {
         }
       });
   }
-
-  /**
-   * Sign in an existing user
-   * @param signInRequest - The sign-in request containing the username and password
-   * @returns - The sign-in response containing the user id, username, and token
-   */
   signIn(signInRequest: SignInRequest) {
     console.log(signInRequest);
     return this.http.post<SignInResponse>(`${this.basePath}/authentication/sign-in`, signInRequest, this.httpOptions)
@@ -71,7 +59,7 @@ export class AuthenticationService {
           this.signedInUsername.next(response.username);
           localStorage.setItem('token', response.token);
           console.log(`Signed in as ${response.username} with token ${response.token}`);
-          this.router.navigate(['/sidebar/notifications']).then();
+          this.router.navigate(['/home']).then();
         },
         error: (error) => {
           console.error(`Error while signing in: ${error}`);
@@ -82,10 +70,6 @@ export class AuthenticationService {
         }
       });
   }
-
-  /**
-   * Sign out the current user
-   */
   signOut() {
     this.signedIn.next(false);
     this.signedInUserId.next(0);
