@@ -33,9 +33,8 @@ import {Router, RouterLink} from '@angular/router';
 })
 export class SignInComponent extends BaseFormComponent implements OnInit {
   form!: FormGroup;
-  submitted = false;
 
-  constructor(private builder: FormBuilder, private authenticationService: AuthenticationService, private router: Router) {
+  constructor(private builder: FormBuilder, private authenticationService: AuthenticationService) {
     super();
   }
 

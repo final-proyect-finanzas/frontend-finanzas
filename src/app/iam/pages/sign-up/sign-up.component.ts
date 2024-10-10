@@ -7,8 +7,6 @@ import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} f
 import {MatButton} from '@angular/material/button';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {BaseFormComponent} from '../../../shared/components/base-form.component';
-import {AuthenticationService} from '../../services/authentication.service';
-import {SignUpRequest} from '../../model/sign-up.request';
 import {Company} from '../../model/company.entity';
 import {CompanyService} from '../../services/company.service';
 import {Router} from '@angular/router';
