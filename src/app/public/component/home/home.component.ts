@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../../../iam/services/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -8,5 +10,13 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  constructor(private router: Router, private authService: AuthenticationService) {}
 
+  navigateToPostBills(): void {
+    this.router.navigate(['/post-bills']);
+  }
+
+  logOut(): void {
+    this.authService.signOut();
+  }
 }
