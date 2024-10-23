@@ -6,10 +6,10 @@ import { PostBillsComponent } from './bills/pages/post-bills/post-bills.componen
 import { authenticationGuard } from './iam/services/authentication.guard';
 
 export const routes: Routes = [
-  { path: 'home', component: HomeComponent, canActivate: [authenticationGuard] },
+  { path: 'home/:companyId', component: HomeComponent, canActivate: [authenticationGuard] },
   { path: 'sign-in', component: SignInComponent, canActivate: [authenticationGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [authenticationGuard] },
-  { path: 'post-bills', component: PostBillsComponent, canActivate: [authenticationGuard] },
+  { path: 'post-bills/:companyId', component: PostBillsComponent, canActivate: [authenticationGuard] },
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
   { path: '**', redirectTo: '/sign-in' }
 ];

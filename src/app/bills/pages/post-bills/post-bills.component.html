@@ -1,7 +1,7 @@
 <div class="post-bills-container">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Registrar Factura</mat-card-title>
+      <mat-card-title>Registrar Letra/Factura</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -24,13 +24,6 @@
           <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-label>Fecha de Descuento</mat-label>
-          <input matInput [matDatepicker]="picker3" formControlName="fechaDescuento" required>
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
-          <mat-datepicker #picker3></mat-datepicker>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
           <mat-label>Monto Total</mat-label>
           <input matInput type="number" formControlName="montoTotal" required>
         </mat-form-field>
@@ -42,24 +35,8 @@
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-label>Costo Inicial</mat-label>
-          <input matInput type="number" formControlName="initialCost" required>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Costo Final</mat-label>
-          <input matInput type="number" formControlName="finalCost" required>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
           <mat-label>Deudores</mat-label>
           <input matInput type="text" formControlName="deudores" required>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Portfolio ID</mat-label>
-          <input matInput type="number" formControlName="portfolioId" required>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Bank ID</mat-label>
-          <input matInput type="number" formControlName="bankId" required>
         </mat-form-field>
         <div class="button-group">
           <button mat-button type="button" (click)="onBack()">Regresar</button>

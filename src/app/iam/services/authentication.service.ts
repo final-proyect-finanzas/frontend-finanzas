@@ -72,8 +72,8 @@ export class AuthenticationService {
           this.signedIn.next(true);
           this.signedInUserId.next(response.id);
           this.signedInUsername.next(response.username);
-          this.router.navigate(['/home']).then();
-        },
+          this.router.navigate([`/home/${response.id}`]).then();
+          },
         error: (error) => {
           console.error('Error while signing in:', error);
           this.signedIn.next(false);
