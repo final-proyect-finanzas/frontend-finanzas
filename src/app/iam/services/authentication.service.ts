@@ -22,7 +22,15 @@ export class AuthenticationService {
   private signedInUserId: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   private signedInUsername: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.signedIn.next(true);
+      // Opcional: Puedes agregar lógica para inicializar `signedInUserId` y `signedInUsername` si tienes esa información almacenada
+    } else {
+      this.signedIn.next(false);
+    }
+  }
 
 
   get isSignedIn() {
@@ -50,19 +58,24 @@ export class AuthenticationService {
       });
   }
   signIn(signInRequest: SignInRequest) {
-    console.log(signInRequest);
+    console.log('SignIn request:', signInRequest);
     return this.http.post<SignInResponse>(`${this.basePath}/authentication/sign-in`, signInRequest, this.httpOptions)
       .subscribe({
         next: (response) => {
+          console.log('SignIn response:', response);
+          if (response.token) {
+            localStorage.setItem('token', response.token);
+            console.log(`Token stored: ${response.token}`);
+          } else {
+            console.error('No token in response');
+          }
           this.signedIn.next(true);
           this.signedInUserId.next(response.id);
           this.signedInUsername.next(response.username);
-          localStorage.setItem('token', response.token);
-          console.log(`Signed in as ${response.username} with token ${response.token}`);
-          this.router.navigate(['/home']).then();
-        },
+          this.router.navigate([`/home/${response.id}`]).then();
+          },
         error: (error) => {
-          console.error(`Error while signing in: ${error}`);
+          console.error('Error while signing in:', error);
           this.signedIn.next(false);
           this.signedInUserId.next(0);
           this.signedInUsername.next('');
