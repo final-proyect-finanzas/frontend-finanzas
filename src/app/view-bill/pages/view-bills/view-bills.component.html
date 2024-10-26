@@ -1,0 +1,61 @@
+<div>
+  <div class="title">
+    <h2>FACTURAS</h2>
+  </div>
+  <div class="colum">
+    <p>Nombre</p>
+    <p>Monto</p>
+    <p>Tipo de cambio</p>
+    <p>Fecha de emision</p>
+    <p>Fecha de pago</p>
+    <p>
+      <select multiple name="drawfs" id="drawfs">
+        <option>Nombre</option>
+        <option>Monto</option>
+        <option>Tipo de cambio</option>
+        <option>Fecha de emision</option>
+        <option>Fecha de pago</option>
+      </select>
+    </p>
+  </div>
+  <div>
+    <table mat-table>
+
+      <ng-contenedor matColumnDef="nombre-demo">
+        <el mat-cabecera-célula *matHeaderCellDef> Nombre </el>
+        <td mat-célula *matCellDef="let Bills"> {{Bills.number}} </td>
+      </ng-contenedor>
+
+      <ng-contenedor matColumnDef="nombre-demo">
+        <el mat-cabecera-célula *matHeaderCellDef> Fecha-E </el>
+        <td mat-célula *matCellDef="let Bills"> {{Bills.issueDate}} </td>
+      </ng-contenedor>
+
+      <ng-contenedor matColumnDef="nombre-demo">
+        <el mat-cabecera-célula *matHeaderCellDef> Fecha-F </el>
+        <td mat-célula *matCellDef="let Bills"> {{Bills.dueDate}} </td>
+      </ng-contenedor>
+
+      <ng-contenedor matColumnDef="nombre-demo">
+        <el mat-cabecera-célula *matHeaderCellDef> Cantidad </el>
+        <td mat-célula *matCellDef="let Bills"> {{Bills.amount}} </td>
+      </ng-contenedor>
+
+      <ng-contenedor matColumnDef="nombre-demo">
+        <el mat-cabecera-célula *matHeaderCellDef> Moneda </el>
+        <td mat-célula *matCellDef="let Bills"> {{Bills.currency}} </td>
+      </ng-contenedor>
+
+      <ng-contenedor matColumnDef="nombre-demo">
+        <el mat-cabecera-célula *matHeaderCellDef> Nombre del operador </el>
+        <td mat-célula *matCellDef="let Bills"> {{Bills.debtorName}} </td>
+      </ng-contenedor>
+
+      <ng-contenedor matColumnDef="nombre-demo">
+        <el mat-cabecera-célula *matHeaderCellDef> Nombre de la compañia </el>
+        <td mat-célula *matCellDef="let Bills"> {{Bills.companyName}} </td>
+      </ng-contenedor>
+
+    </table>
+  </div>
+</div>
