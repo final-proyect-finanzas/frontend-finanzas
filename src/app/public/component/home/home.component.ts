@@ -27,4 +27,8 @@ export class HomeComponent implements OnInit {
   logOut(): void {
     this.authService.signOut();
   }
+
+  goBills(): void {
+    this.router.navigate(['/bills']);
+  }
 }

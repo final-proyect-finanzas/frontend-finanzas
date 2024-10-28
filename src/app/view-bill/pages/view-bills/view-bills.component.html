@@ -19,42 +19,45 @@
     </p>
   </div>
   <div>
-    <table mat-table>
+    <table mat-table [dataSource]="bills">
 
-      <ng-contenedor matColumnDef="nombre-demo">
-        <el mat-cabecera-célula *matHeaderCellDef> Nombre </el>
-        <td mat-célula *matCellDef="let Bills"> {{Bills.number}} </td>
-      </ng-contenedor>
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let bill"> {{bill.number}} </td>
+      </ng-container>
 
-      <ng-contenedor matColumnDef="nombre-demo">
-        <el mat-cabecera-célula *matHeaderCellDef> Fecha-E </el>
-        <td mat-célula *matCellDef="let Bills"> {{Bills.issueDate}} </td>
-      </ng-contenedor>
+      <ng-container matColumnDef="fechaE">
+        <th mat-header-cell *matHeaderCellDef> Fecha-E </th>
+        <td mat-cell *matCellDef="let bill"> {{bill.issueDate}} </td>
+      </ng-container>
 
-      <ng-contenedor matColumnDef="nombre-demo">
-        <el mat-cabecera-célula *matHeaderCellDef> Fecha-F </el>
-        <td mat-célula *matCellDef="let Bills"> {{Bills.dueDate}} </td>
-      </ng-contenedor>
+      <ng-container matColumnDef="fechaF">
+        <th mat-header-cell *matHeaderCellDef> Fecha-F </th>
+        <td mat-cell *matCellDef="let bill"> {{bill.dueDate}} </td>
+      </ng-container>
 
-      <ng-contenedor matColumnDef="nombre-demo">
-        <el mat-cabecera-célula *matHeaderCellDef> Cantidad </el>
-        <td mat-célula *matCellDef="let Bills"> {{Bills.amount}} </td>
-      </ng-contenedor>
+      <ng-container matColumnDef="cantidad">
+        <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+        <td mat-cell *matCellDef="let bill"> {{bill.amount}} </td>
+      </ng-container>
 
-      <ng-contenedor matColumnDef="nombre-demo">
-        <el mat-cabecera-célula *matHeaderCellDef> Moneda </el>
-        <td mat-célula *matCellDef="let Bills"> {{Bills.currency}} </td>
-      </ng-contenedor>
+      <ng-container matColumnDef="moneda">
+        <th mat-header-cell *matHeaderCellDef> Moneda </th>
+        <td mat-cell *matCellDef="let bill"> {{bill.currency}} </td>
+      </ng-container>
 
-      <ng-contenedor matColumnDef="nombre-demo">
-        <el mat-cabecera-célula *matHeaderCellDef> Nombre del operador </el>
-        <td mat-célula *matCellDef="let Bills"> {{Bills.debtorName}} </td>
-      </ng-contenedor>
+      <ng-container matColumnDef="nombreOperador">
+        <th mat-header-cell *matHeaderCellDef> Nombre del operador </th>
+        <td mat-cell *matCellDef="let bill"> {{bill.debtorName}} </td>
+      </ng-container>
 
-      <ng-contenedor matColumnDef="nombre-demo">
-        <el mat-cabecera-célula *matHeaderCellDef> Nombre de la compañia </el>
-        <td mat-célula *matCellDef="let Bills"> {{Bills.companyName}} </td>
-      </ng-contenedor>
+      <ng-container matColumnDef="nombreCompania">
+        <th mat-header-cell *matHeaderCellDef> Nombre de la compañia </th>
+        <td mat-cell *matCellDef="let bill"> {{bill.companyName}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
     </table>
   </div>

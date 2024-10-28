@@ -11,6 +11,7 @@ export class Bills {
   debtorName: string;
   portfolioId: number;
   bankId: number;
+
   constructor() {
     this.id = 0;
     this.number = '';

@@ -9,7 +9,7 @@ import { HomeComponent } from './public/component/home/home.component';
   standalone: true,
   imports: [RouterOutlet, AuthenticationSectionComponent, SignInComponent, HomeComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   title = 'frontend';
@@ -22,16 +22,24 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     const token = localStorage.getItem('token');
 
-    // Clear cache
-    if ('caches' in window) {
-      caches.keys().then(function(names) {
-        for (let name of names) {
-          caches.delete(name);
-        }
+    // Clear sessionStorage
+    sessionStorage.clear();
+
+    // Clear cookies
+    document.cookie.split(";").forEach((c) => {
+      document.cookie = c.trim().split("=")[0] + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+    });
+
+    if (token) {
+      // If token exists, navigate to home
+      this.router.navigate(['/home']).then(() => {
+        console.log('Navigated to home');
+      });
+    } else {
+      // If no token, navigate to sign-in
+      this.router.navigate(['/sign-in']).then(() => {
+        console.log('Navigated to sign-in');
       });
     }
-
-    // Navigate to home
-    this.router.navigate(['/']);
   }
 }

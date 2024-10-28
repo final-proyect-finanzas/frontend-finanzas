@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import {environment} from '../../../environments/environment';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {BehaviorSubject} from 'rxjs';
-import {Router} from '@angular/router';
-import {SignUpRequest} from '../model/sign-up.request';
-import {SignUpResponse} from '../model/sign-up.response';
-import {SignInRequest} from '../model/sign-in.request';
-import {SignInResponse} from '../model/sign-in.response';
+import { environment } from '../../../environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
+import { SignUpRequest } from '../model/sign-up.request';
+import { SignUpResponse } from '../model/sign-up.response';
+import { SignInRequest } from '../model/sign-in.request';
+import { SignInResponse } from '../model/sign-in.response';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,8 @@ export class AuthenticationService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-    })};
+    })
+  };
 
   private signedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private signedInUserId: BehaviorSubject<number> = new BehaviorSubject<number>(0);
@@ -26,12 +27,11 @@ export class AuthenticationService {
     const token = localStorage.getItem('token');
     if (token) {
       this.signedIn.next(true);
-      // Opcional: Puedes agregar lógica para inicializar `signedInUserId` y `signedInUsername` si tienes esa información almacenada
+      // Optional: Initialize signedInUserId and signedInUsername if you have that information stored
     } else {
       this.signedIn.next(false);
     }
   }
-
 
   get isSignedIn() {
     return this.signedIn.asObservable();
@@ -44,9 +44,10 @@ export class AuthenticationService {
   get currentUsername() {
     return this.signedInUsername.asObservable();
   }
+
   signUp(signUpRequest: SignUpRequest) {
     return this.http.post<SignUpResponse>(`${this.basePath}/authentication/sign-up`, signUpRequest, this.httpOptions)
-      .subscribe( {
+      .subscribe({
         next: (response) => {
           console.log(`Signed up as ${response.username} with id ${response.id}`);
           this.router.navigate(['/sign-in']).then();
@@ -57,6 +58,7 @@ export class AuthenticationService {
         }
       });
   }
+
   signIn(signInRequest: SignInRequest) {
     console.log('SignIn request:', signInRequest);
     return this.http.post<SignInResponse>(`${this.basePath}/authentication/sign-in`, signInRequest, this.httpOptions)
@@ -73,7 +75,7 @@ export class AuthenticationService {
           this.signedInUserId.next(response.id);
           this.signedInUsername.next(response.username);
           this.router.navigate([`/home/${response.id}`]).then();
-          },
+        },
         error: (error) => {
           console.error('Error while signing in:', error);
           this.signedIn.next(false);
@@ -83,6 +85,7 @@ export class AuthenticationService {
         }
       });
   }
+
   signOut() {
     this.signedIn.next(false);
     this.signedInUserId.next(0);
@@ -90,5 +93,4 @@ export class AuthenticationService {
     localStorage.removeItem('token');
     this.router.navigate(['/sign-in']).then();
   }
-
 }
