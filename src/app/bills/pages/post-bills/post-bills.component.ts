@@ -55,7 +55,9 @@ export class PostBillsComponent implements OnInit {
       debtorName: this.form.value.deudores,
       companyId: this.companyId
     };
+    console.log(billData);
     this.billsService.createBill(billData).subscribe({
+
       next: response => {
         console.log('Bill created successfully:', response);
         this.router.navigate([`/home/${this.companyId}`]);

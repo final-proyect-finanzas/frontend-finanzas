@@ -7,6 +7,7 @@ import { SignUpRequest } from '../model/sign-up.request';
 import { SignUpResponse } from '../model/sign-up.response';
 import { SignInRequest } from '../model/sign-in.request';
 import { SignInResponse } from '../model/sign-in.response';
+import { BillsService } from '../../bills/services/bills.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class AuthenticationService {
   private signedInUserId: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   private signedInUsername: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient, private billsService: BillsService) {
     const token = localStorage.getItem('token');
     if (token) {
       this.signedIn.next(true);
@@ -74,7 +75,16 @@ export class AuthenticationService {
           this.signedIn.next(true);
           this.signedInUserId.next(response.id);
           this.signedInUsername.next(response.username);
-          this.router.navigate([`/home/${response.id}`]).then();
+          this.billsService.getCompanyIdFromUserId(response.id.toString()).subscribe({
+            next: (companyData: any) => {
+              const companyId = companyData.companyId;
+              console.log(response);
+              this.router.navigate([`/home/${companyId}`]).then();
+            },
+            error: (error: any) => {
+              console.error('Error fetching company ID:', error);
+            }
+          });
         },
         error: (error) => {
           console.error('Error while signing in:', error);

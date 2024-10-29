@@ -21,4 +21,10 @@ export class BillsService extends BaseService<Bills> {
     return this.http.get<Bills[]>(`${this.basePath}/bills/getByCompanyId/${companyId}`, this.getHttpOptions())
       .pipe(retry(2), catchError(this.handleError));
   }
+
+  getCompanyIdFromUserId(userId: string): Observable<string> {
+    return this.http.get<string>(`${this.basePath}/companies/user/${userId}`, this.getHttpOptions())
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
 }

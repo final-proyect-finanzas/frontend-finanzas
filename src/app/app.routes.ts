@@ -11,7 +11,12 @@ export const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'post-bills/:companyId', component: PostBillsComponent, canActivate: [authenticationGuard] },
-  { path: 'bills', component: ViewBillsComponent, canActivate: [authenticationGuard] },
+  { path: 'bills/:companyId', component: ViewBillsComponent, canActivate: [authenticationGuard] },
+  //TODO: -Ver wallets y en esa page crear Wallet. Crear Wallet Component. Añadir facturas a Wallet
+  //Todo: Page to generate discount about a wallet.
+  //Todo: Page to show the report about the discount.
+
+
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
   { path: '**', redirectTo: '/sign-in' }
 ];
