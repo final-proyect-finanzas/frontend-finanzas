@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import { WalletService } from '../../services/wallet.service';
 import { Wallet } from '../../model/wallet';
 import {MatCardModule} from '@angular/material/card';
@@ -10,7 +10,7 @@ import {MatButton} from '@angular/material/button';
 @Component({
   selector: 'app-view-wallets',
   standalone: true,
-  imports: [MatCardModule, MatDivider, DatePipe, NgIf, NgForOf, MatButton],
+  imports: [MatCardModule, MatDivider, DatePipe, NgIf, NgForOf, MatButton, RouterLink],
   templateUrl: './view-wallets.component.html',
   styleUrl: './view-wallets.component.css'
 })
@@ -37,5 +37,10 @@ export class ViewWalletsComponent implements OnInit {
   navigateToCreateWallet(): void {
     const companyId = this.route.snapshot.paramMap.get('companyId');
     this.router.navigate([`/wallets/create/${companyId}`]);
+  }
+
+  viewDetails(walletId: any): void {
+    const companyId = this.route.snapshot.paramMap.get('companyId');
+    this.router.navigate([`/company/${companyId}/wallet/${walletId}`]);
   }
 }

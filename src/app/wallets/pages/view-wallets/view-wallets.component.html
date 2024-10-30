@@ -8,6 +8,9 @@
       <mat-divider></mat-divider>
       <p><strong>Number of Bills:</strong> {{ wallet.bills.length }}</p>
       <mat-divider></mat-divider>
+      <button mat-raised-button color="primary" (click)="viewDetails(wallet.id)">
+        View Details
+      </button>
     </mat-card-content>
   </mat-card>
 </ng-container>

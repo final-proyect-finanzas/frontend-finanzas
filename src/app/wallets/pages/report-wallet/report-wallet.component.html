@@ -1,0 +1,9 @@
+<div>
+  <h1>Reporte</h1>
+  <div *ngIf="pdfSrc; else noReport" style="height: calc(100vh - 50px);">
+    <iframe [src]="pdfSrc" width="100%" height="100%"></iframe>
+  </div>
+  <ng-template #noReport>
+    <p>No report available.</p>
+  </ng-template>
+</div>

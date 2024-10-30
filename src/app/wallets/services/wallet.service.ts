@@ -22,4 +22,28 @@ export class WalletService extends BaseService<Wallet> {
       .pipe(retry(2), catchError(this.handleError));
   }
 
+  getWalletById(walletId: any): Observable<any> {
+    return this.getById(walletId);
+  }
+
+  addBillToWallet(walletId: any, billId: any): Observable<any> {
+    return this.http.put(`${this.basePath}/wallets/${walletId}/bill/${billId}`, null, this.getHttpOptions())
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  generateDiscount(walletId: any, bankId: any){
+    return this.http.put(`${this.basePath}/wallets/discount/${walletId}/bank/${bankId}`, null, this.getHttpOptions())
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  getBanks(){
+    return this.http.get(`${this.basePath}/banks`, this.getHttpOptions())
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  getReport(walletId: any): Observable<string> {
+    return this.http.get(`${this.basePath}/reports/pdf/${walletId}`, { responseType: 'text' })
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
 }
