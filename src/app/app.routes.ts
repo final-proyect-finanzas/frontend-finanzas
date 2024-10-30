@@ -5,6 +5,8 @@ import { SignUpComponent } from './iam/pages/sign-up/sign-up.component';
 import { PostBillsComponent } from './bills/pages/post-bills/post-bills.component';
 import { authenticationGuard } from './iam/services/authentication.guard';
 import { ViewBillsComponent } from './view-bill/pages/view-bills/view-bills.component';
+import {ViewWalletsComponent} from './wallets/pages/view-wallets/view-wallets.component';
+import {CreateWalletsComponent} from './wallets/pages/create-wallets/create-wallets.component';
 
 export const routes: Routes = [
   { path: 'home/:companyId', component: HomeComponent, canActivate: [authenticationGuard] },
@@ -12,8 +14,11 @@ export const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'post-bills/:companyId', component: PostBillsComponent, canActivate: [authenticationGuard] },
   { path: 'bills/:companyId', component: ViewBillsComponent, canActivate: [authenticationGuard] },
-  //TODO: -Ver wallets y en esa page crear Wallet. Crear Wallet Component. Añadir facturas a Wallet
-  //Todo: Page to generate discount about a wallet.
+  { path: 'wallets/:companyId', component: ViewWalletsComponent, canActivate: [authenticationGuard] },
+  {path: 'wallets/create/:companyId', component:CreateWalletsComponent, canActivate: [authenticationGuard]},
+  //{path: 'company:/companyId/wallet/:walletId', component:ViewWalletsComponent, canActivate: [authenticationGuard]},
+  //TODO: Añadir facturas a Wallet
+  //Todo: Page to generate discount about a wallet. ( view details
   //Todo: Page to show the report about the discount.
 
 

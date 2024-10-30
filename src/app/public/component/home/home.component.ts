@@ -31,4 +31,8 @@ export class HomeComponent implements OnInit {
   goBills(): void {
     this.router.navigate([`/bills/${this.companyId}`]);
   }
+
+  goWallets(): void {
+    this.router.navigate([`/wallets/${this.companyId}`]);
+  }
 }
