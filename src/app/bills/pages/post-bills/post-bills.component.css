@@ -1,16 +1,61 @@
 .post-bills-container {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  align-items: center;
+  height: 100vh;
+  background-image: url("https://i.postimg.cc/zJsY6zr7/fondo-pixel.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: center;
+}
+
+mat-card-title {
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 mat-card {
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
+  padding: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.date-fields {
+  display: flex;
+  justify-content: space-between;
+}
+
+.date-fields mat-form-field {
+  width: 48%;
 }
 
 .button-group {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 100px;
   margin-top: 20px;
+}
+
+.button-group button {
+  width: 150px;
+}
+
+button[type="submit"] {
+  background-color: #341fb7;
+  color: white;
+}
+
+button[type="button"] {
+  background-color: #f44336;
+  color: white;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle, MatCardSubtitle } from '@angular/material/card';
 import { MatButton } from '@angular/material/button';
 import { MatInput } from '@angular/material/input';
@@ -38,10 +38,18 @@ export class PostBillsComponent implements OnInit {
       numeroLetra: ['', [Validators.required]],
       fechaEmision: ['', [Validators.required]],
       fechaVencimiento: ['', [Validators.required]],
-      montoTotal: ['', [Validators.required]],
+      montoTotal: ['', [Validators.required, this.positiveAmountValidator]],
       moneda: ['', [Validators.required]],
       deudores: ['', [Validators.required]],
     });
+  }
+
+  positiveAmountValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    if (value !== null && value < 0) {
+      return { negativeAmount: true };
+    }
+    return null;
   }
 
   onSubmit(): void {
