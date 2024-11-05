@@ -11,6 +11,7 @@ import { Bills } from '../../model/bills.entity';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOption, MatSelect } from '@angular/material/select';
+import {ToolbarComponent} from '../../../public/component/toolbar/toolbar.component';
 
 @Component({
   selector: 'app-post-bills',
@@ -18,7 +19,7 @@ import { MatOption, MatSelect } from '@angular/material/select';
   imports: [
     MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle,
     MatButton,
-    MatInput, MatDatepickerModule, ReactiveFormsModule, MatLabel, MatFormFieldModule, MatSelect, MatOption
+    MatInput, MatDatepickerModule, ReactiveFormsModule, MatLabel, MatFormFieldModule, MatSelect, MatOption, ToolbarComponent
   ],
   templateUrl: './post-bills.component.html',
   styleUrl: './post-bills.component.css'
