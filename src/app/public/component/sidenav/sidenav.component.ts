@@ -24,6 +24,9 @@ export class SidenavComponent implements OnInit {
   navigateToPostBills(): void {
     this.router.navigate([`/post-bills/${this.companyId}`]);
   }
+  navigateToHome(): void {
+    this.router.navigate([`/home/${this.companyId}`]);
+  }
 
   logOut(): void {
     this.authService.signOut();

@@ -5,3 +5,20 @@
   background-image: url("https://i.postimg.cc/zJsY6zr7/fondo-pixel.jpg");
   background-size: cover;
 }
+p {
+  text-align: center;
+  margin: 0;
+  position: absolute;
+  font-size: 30px;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+}

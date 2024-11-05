@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../../iam/services/authentication.service';
-import {ToolbarComponent} from '../toolbar/toolbar.component';
+import { CompanyService } from '../../../iam/services/company.service';
+import { ActivatedRoute } from '@angular/router';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +11,25 @@ import {ToolbarComponent} from '../toolbar/toolbar.component';
     ToolbarComponent
   ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  companyName: string | undefined;
 
+  constructor(
+    private authService: AuthenticationService,
+    private companyService: CompanyService,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      const companyId = params.get('companyId');
+      if (companyId) {
+        this.companyService.getCompanyById(companyId).subscribe(company => {
+          this.companyName = company.name;
+        });
+      }
+    });
+  }
 }
