@@ -1,0 +1,5 @@
+<div class="toolbar-content">
+  <i class="fas fa-bars" (click)="toggleSidenav()"></i>
+  <img src="/assets/img/logo.png" alt="Logo" class="logo">
+</div>
+<app-sidenav *ngIf="isSidenavOpen" (close)="toggleSidenav()"></app-sidenav>

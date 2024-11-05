@@ -1,0 +1,40 @@
+.sidenav {
+  width: 250px;
+  height: 100%;
+  background-color: #d9d9d9;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  z-index: 1;
+  margin-top: 90px;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  background-color: #26286a;
+  color: #d9d9d9;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+button:hover {
+  background-color:#3340eb;
+}
+
+.logout-icon {
+  margin-top: 540px;
+  font-size: 40px;
+  color: #26286a;
+  cursor: pointer;
+  align-self: center;
+  transform: scaleX(-1);
+}
+
+.logout-icon:hover {
+  color: #3340eb;
+}

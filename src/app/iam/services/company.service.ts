@@ -15,4 +15,7 @@ export class CompanyService extends BaseService<Company> {
   createCompany(company: Company): Observable<Company> {
     return this.create(company);
   }
+  getCompany(companyId: number): Observable<Company> {
+    return this.http.get<Company>(`${this.resourceEndpoint}/${companyId}`);
+  }
 }
