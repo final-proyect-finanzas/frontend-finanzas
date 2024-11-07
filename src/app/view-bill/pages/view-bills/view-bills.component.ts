@@ -7,7 +7,7 @@ import { Bills } from '../../model/bills.entity';
 import { ActivatedRoute } from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {MatButton} from '@angular/material/button';
-import {NgForOf} from '@angular/common';
+import {DatePipe, NgForOf} from '@angular/common';
 
 @Component({
   selector: 'app-view-bills',
@@ -16,7 +16,8 @@ import {NgForOf} from '@angular/common';
     MatTableModule,
     FormsModule,
     MatButton,
-    NgForOf
+    NgForOf,
+    DatePipe
   ],
   templateUrl: './view-bills.component.html',
   styleUrls: ['./view-bills.component.css']

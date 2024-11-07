@@ -1,0 +1,53 @@
+/* General styles for the card */
+mat-card {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+/* Title styles */
+mat-card-title {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Form field styles */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Button styles */
+button {
+  margin-right: 10px;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+}
+
+button[type="button"] {
+  background-color: #6c757d;
+  color: white;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  mat-card {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  mat-card-title {
+    font-size: 1.2em;
+  }
+
+  button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

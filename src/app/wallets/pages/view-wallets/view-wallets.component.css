@@ -1,0 +1,77 @@
+/* General styles for the wallet cards */
+.wallet-card {
+  margin: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  background-color: #ffffff;
+}
+
+.wallet-card:hover {
+  transform: scale(1.05);
+}
+
+/* Styles for discounted wallets */
+.wallet-card.discounted {
+  background-color: #d4edda;
+  border-left: 5px solid #28a745;
+}
+
+/* Styles for non-discounted wallets */
+.wallet-card.non-discounted {
+  background-color: #f8d7da;
+  border-left: 5px solid #dc3545;
+}
+
+/* Header styles */
+mat-card-header {
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
+}
+
+/* Title styles */
+mat-card-title {
+  font-size: 1.2em;
+  color: #333;
+}
+
+/* Content styles */
+mat-card-content {
+  padding: 15px;
+  color: #555;
+}
+
+/* Button styles */
+button {
+  margin-top: 10px;
+}
+
+/* Responsive grid layout */
+.wallet-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .wallet-card {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+@media (min-width: 769px) {
+  .wallet-card {
+    width: calc(33.333% - 40px);
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
