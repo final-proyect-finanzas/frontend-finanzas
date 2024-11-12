@@ -1,11 +1,29 @@
-/* General styles for the wallet cards */
+:host {
+  display: block;
+  padding-top: 80px; /* Adjust this value based on the height of your toolbar */
+  background-image: url("https://i.postimg.cc/zJsY6zr7/fondo-pixel.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.wallet-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 .wallet-card {
   margin: 20px;
-  padding: 15px;
+  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
   background-color: #ffffff;
+  flex: 1 1 calc(33.333% - 40px); /* Adjusted width for responsive cards */
+  box-sizing: border-box;
 }
 
 .wallet-card:hover {
@@ -42,6 +60,7 @@ mat-card-title {
 mat-card-content {
   padding: 15px;
   color: #555;
+  word-wrap: break-word; /* Ensure text wraps within the card */
 }
 
 /* Button styles */
@@ -49,24 +68,11 @@ button {
   margin-top: 10px;
 }
 
-/* Responsive grid layout */
-.wallet-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
 /* Responsive styles */
 @media (max-width: 768px) {
   .wallet-card {
-    width: 100%;
+    flex: 1 1 100%;
     margin: 10px 0;
-  }
-}
-
-@media (min-width: 769px) {
-  .wallet-card {
-    width: calc(33.333% - 40px);
   }
 }
 

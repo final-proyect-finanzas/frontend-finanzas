@@ -1,3 +1,4 @@
+<app-toolbar></app-toolbar>
 <div class="wallet-container">
   <ng-container *ngIf="wallets.length > 0; else noWallets">
     <mat-card *ngFor="let wallet of wallets" class="wallet-card" [ngClass]="{'discounted': wallet.isDiscounted, 'non-discounted': !wallet.isDiscounted}">

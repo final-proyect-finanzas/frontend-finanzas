@@ -8,17 +8,19 @@ import { ActivatedRoute } from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {MatButton} from '@angular/material/button';
 import {DatePipe, NgForOf} from '@angular/common';
+import {ToolbarComponent} from "../../../public/component/toolbar/toolbar.component";
 
 @Component({
   selector: 'app-view-bills',
   standalone: true,
-  imports: [
-    MatTableModule,
-    FormsModule,
-    MatButton,
-    NgForOf,
-    DatePipe
-  ],
+    imports: [
+        MatTableModule,
+        FormsModule,
+        MatButton,
+        NgForOf,
+        DatePipe,
+        ToolbarComponent
+    ],
   templateUrl: './view-bills.component.html',
   styleUrls: ['./view-bills.component.css']
 })

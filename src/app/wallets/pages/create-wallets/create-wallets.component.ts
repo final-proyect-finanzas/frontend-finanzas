@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import {MatNativeDateModule} from '@angular/material/core';
+import {ToolbarComponent} from '../../../public/component/toolbar/toolbar.component';
 
 @Component({
   selector: 'app-create-wallets',
@@ -19,7 +20,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatButtonModule
+    MatButtonModule,
+    ToolbarComponent
   ],
   templateUrl: './create-wallets.component.html',
   styleUrls: ['./create-wallets.component.css']
