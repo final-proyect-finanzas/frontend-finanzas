@@ -13,12 +13,12 @@ export class BillsService extends BaseService<Bills> {
     this.resourceEndpoint = '/bills/create';
   }
 
-  createBill(bill: Bills): Observable<Bills> {
+  createBill(bill: any): Observable<any> {
     return this.create(bill);
   }
 
-  getBillsByCompanyId(companyId: string): Observable<Bills[]> {
-    return this.http.get<Bills[]>(`${this.basePath}/bills/getByCompanyId/${companyId}`, this.getHttpOptions())
+  getBillsByCompanyId(companyId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.basePath}/bills/getByCompanyId/${companyId}`, this.getHttpOptions())
       .pipe(retry(2), catchError(this.handleError));
   }
 

@@ -5,10 +5,14 @@
       <mat-card-header>
         <mat-card-title>ID Cartera: {{ wallet.id }}</mat-card-title>
       </mat-card-header>
+      <p><strong>Moneda: </strong> {{wallet.currency}}</p>
       <mat-card-content>
-        <p><strong>¿Está descontada?:</strong> {{ wallet.isDiscounted ? 'Yes' : 'No' }}</p>
+        <p><strong>¿Está descontada?:</strong> {{ wallet.isDiscounted ? 'Sí' : 'No' }}</p>
         <mat-divider></mat-divider>
         <p><strong>Cantidad de letras/facturas:</strong> {{ wallet.bills.length }}</p>
+        <mat-divider></mat-divider>
+        <p *ngIf="wallet.isDiscounted"><strong>Descontada con el banco: </strong> {{wallet.bankName}}</p>
+        <mat-divider *ngIf="wallet.isDiscounted"></mat-divider>
         <mat-divider></mat-divider>
         <button mat-raised-button color="primary" (click)="viewDetails(wallet.id)">
           Ver detalles

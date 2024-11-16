@@ -11,7 +11,8 @@ import { Bills } from '../../model/bills.entity';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOption, MatSelect } from '@angular/material/select';
-import {ToolbarComponent} from '../../../public/component/toolbar/toolbar.component';
+import { ToolbarComponent } from '../../../public/component/toolbar/toolbar.component';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-post-bills',
@@ -19,10 +20,10 @@ import {ToolbarComponent} from '../../../public/component/toolbar/toolbar.compon
   imports: [
     MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle,
     MatButton,
-    MatInput, MatDatepickerModule, ReactiveFormsModule, MatLabel, MatFormFieldModule, MatSelect, MatOption, ToolbarComponent
+    MatInput, MatDatepickerModule, ReactiveFormsModule, MatLabel, MatFormFieldModule, MatSelect, MatOption, ToolbarComponent, NgIf
   ],
   templateUrl: './post-bills.component.html',
-  styleUrl: './post-bills.component.css'
+  styleUrls: ['./post-bills.component.css']
 })
 export class PostBillsComponent implements OnInit {
   form!: FormGroup;
@@ -42,7 +43,8 @@ export class PostBillsComponent implements OnInit {
       montoTotal: ['', [Validators.required, this.positiveAmountValidator]],
       moneda: ['', [Validators.required]],
       deudores: ['', [Validators.required]],
-    });
+      documentIdentifierDebtor: ['', [Validators.required]]
+    }, { validators: this.dueDateAfterIssueDateValidator });
   }
 
   positiveAmountValidator(control: AbstractControl): ValidationErrors | null {
@@ -53,8 +55,22 @@ export class PostBillsComponent implements OnInit {
     return null;
   }
 
+  dueDateAfterIssueDateValidator(group: AbstractControl): ValidationErrors | null {
+    const issueDate = group.get('fechaEmision')?.value;
+    const dueDate = group.get('fechaVencimiento')?.value;
+    if (issueDate && dueDate && new Date(dueDate) <= new Date(issueDate)) {
+      return { dueDateBeforeIssueDate: true };
+    }
+    return null;
+  }
+
   onSubmit(): void {
-    if (this.form.invalid) return;
+    if (this.form.invalid) {
+      if (this.form.hasError('dueDateBeforeIssueDate')) {
+        alert('Fecha de Vencimiento debe ser mayor que Fecha de Emisión');
+      }
+      return;
+    }
     const billData: Bills = {
       number: this.form.value.numeroLetra,
       issueDate: new Date(this.form.value.fechaEmision),
@@ -62,11 +78,11 @@ export class PostBillsComponent implements OnInit {
       amount: this.form.value.montoTotal,
       currency: this.form.value.moneda,
       debtorName: this.form.value.deudores,
-      companyId: this.companyId
+      companyId: this.companyId,
+      documentIdentifierDebtor: this.form.value.documentIdentifierDebtor
     };
     console.log(billData);
     this.billsService.createBill(billData).subscribe({
-
       next: response => {
         console.log('Bill created successfully:', response);
         this.router.navigate([`/home/${this.companyId}`]);

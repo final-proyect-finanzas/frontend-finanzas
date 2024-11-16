@@ -46,11 +46,16 @@ export class Wallet {
   companyId: number;
   bills: Bill[];
   isDiscounted: boolean;
+  bankName: string;
+  currency: string;
 
   constructor() {
     this.id = 0;
     this.companyId = 0;
     this.bills = [];
     this.isDiscounted = false;
+    this.bankName = '';
+    this.currency = '';
+
   }
 }

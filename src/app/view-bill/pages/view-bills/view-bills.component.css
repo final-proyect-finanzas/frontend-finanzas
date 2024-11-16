@@ -43,9 +43,11 @@ select[multiple]:active {
 }
 
 table {
-  width: 100%;
+  width: calc(100% - 30px);
   border-collapse: collapse;
-  margin: 20px 0;
+  margin: 20px 15px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 th, td {
@@ -55,7 +57,16 @@ th, td {
 }
 
 th {
-  background-color: #f4f4f4;
+  background-color: #4CAF50;
+  color: #171616;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
 }
 
 /* Responsive styles */

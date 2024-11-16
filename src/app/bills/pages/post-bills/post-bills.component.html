@@ -24,6 +24,7 @@
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
+            <mat-error *ngIf="form.hasError('dueDateBeforeIssueDate')">Fecha de Vencimiento debe ser mayor que Fecha de Emisión</mat-error>
           </mat-form-field>
         </div>
         <mat-form-field appearance="outline">
@@ -38,8 +39,12 @@
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-label>Deudores</mat-label>
+          <mat-label>Deudor</mat-label>
           <input matInput type="text" formControlName="deudores" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>DNI/RUC Deudor</mat-label>
+          <input matInput formControlName="documentIdentifierDebtor" required>
         </mat-form-field>
         <div class="button-group">
           <button mat-button type="button" (click)="onBack()">Regresar</button>

@@ -1,9 +1,10 @@
 <app-toolbar></app-toolbar>
-<mat-card *ngIf="wallet">
+<mat-card *ngIf="wallet" class="detailWallet">
   <mat-card-title>Detalles de la cartera</mat-card-title>
   <mat-card-content>
     <p><strong>ID Cartera:</strong> {{ wallet.id }}</p>
     <p><strong>¿Está descontada?:</strong> {{ wallet.isDiscounted ? 'Yes' : 'No' }}</p>
+    <p *ngIf="wallet.isDiscounted"><strong>Descontada con el banco: </strong> {{wallet.bankName}}</p>
     <mat-divider></mat-divider>
     <div *ngFor="let bill of wallet.bills">
       <p><strong>Número de Letra/Factura:</strong> {{ bill.number }}</p>
@@ -12,6 +13,7 @@
       <p><strong>Valor:</strong> {{ bill.amount }}</p>
       <p><strong>Moneda:</strong> {{ bill.currency }}</p>
       <p><strong>Deudor:</strong> {{ bill.debtorName }}</p>
+      <p><strong>DNI/RUC Deudor:</strong> {{ bill.debtorDocumentIdentifier }}</p>
       <mat-divider></mat-divider>
     </div>
     <div *ngIf="!wallet.isDiscounted">
