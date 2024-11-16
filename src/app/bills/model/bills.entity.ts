@@ -18,6 +18,7 @@ export class Bills {
   currency: string; //PEN or USD
   debtorName: string;
   companyId: number;
+  documentIdentifierDebtor: string;
 
   constructor() {
     this.number = '';
@@ -27,5 +28,6 @@ export class Bills {
     this.currency = '';
     this.debtorName = '';
     this.companyId = 0;
+    this.documentIdentifierDebtor = '';
   }
 }

@@ -1,0 +1,31 @@
+:host {
+  display: block;
+  width: 100%;
+  background-color: #26286a;
+  padding: 10px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+}
+
+.toolbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 70px;
+  margin-left: auto;
+}
+
+i {
+  font-size: 35px;
+  color: white;
+  cursor: pointer;
+}
+
+i:hover {
+  color: #ccc;
+}

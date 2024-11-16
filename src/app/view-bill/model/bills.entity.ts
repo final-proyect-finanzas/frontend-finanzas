@@ -11,6 +11,7 @@ export class Bills {
   debtorName: string;
   portfolioId: number;
   bankId: number;
+  debtorDocumentIdentifier: string;
 
   constructor() {
     this.id = 0;
@@ -25,5 +26,6 @@ export class Bills {
     this.debtorName = '';
     this.portfolioId = 0;
     this.bankId = 0;
+    this.debtorDocumentIdentifier = '';
   }
 }

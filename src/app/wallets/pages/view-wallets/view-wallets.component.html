@@ -1,23 +1,30 @@
-<ng-container *ngIf="wallets.length > 0; else noWallets">
-  <mat-card *ngFor="let wallet of wallets" class="wallet-card">
-    <mat-card-header>
-      <mat-card-title>Your Wallet ID: {{ wallet.id }}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p><strong>Is Discounted:</strong> {{ wallet.isDiscounted ? 'Yes' : 'No' }}</p>
-      <mat-divider></mat-divider>
-      <p><strong>Number of Bills:</strong> {{ wallet.bills.length }}</p>
-      <mat-divider></mat-divider>
-      <button mat-raised-button color="primary" (click)="viewDetails(wallet.id)">
-        View Details
-      </button>
-    </mat-card-content>
-  </mat-card>
-</ng-container>
-<ng-template #noWallets>
-  <p>No wallets available.</p>
-</ng-template>
+<app-toolbar></app-toolbar>
+<div class="wallet-container">
+  <ng-container *ngIf="wallets.length > 0; else noWallets">
+    <mat-card *ngFor="let wallet of wallets" class="wallet-card" [ngClass]="{'discounted': wallet.isDiscounted, 'non-discounted': !wallet.isDiscounted}">
+      <mat-card-header>
+        <mat-card-title>ID Cartera: {{ wallet.id }}</mat-card-title>
+      </mat-card-header>
+      <p><strong>Moneda: </strong> {{wallet.currency}}</p>
+      <mat-card-content>
+        <p><strong>¿Está descontada?:</strong> {{ wallet.isDiscounted ? 'Sí' : 'No' }}</p>
+        <mat-divider></mat-divider>
+        <p><strong>Cantidad de letras/facturas:</strong> {{ wallet.bills.length }}</p>
+        <mat-divider></mat-divider>
+        <p *ngIf="wallet.isDiscounted"><strong>Descontada con el banco: </strong> {{wallet.bankName}}</p>
+        <mat-divider *ngIf="wallet.isDiscounted"></mat-divider>
+        <mat-divider></mat-divider>
+        <button mat-raised-button color="primary" (click)="viewDetails(wallet.id)">
+          Ver detalles
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <ng-template #noWallets>
+    <p>No wallets available.</p>
+  </ng-template>
+</div>
 
 <div class="actions">
-  <button mat-raised-button color="primary" (click)="navigateToCreateWallet()">Post Wallet</button>
+  <button mat-raised-button color="primary" (click)="navigateToCreateWallet()">Crear una cartera</button>
 </div>

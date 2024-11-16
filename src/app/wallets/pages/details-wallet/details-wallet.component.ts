@@ -8,11 +8,12 @@ import { MatDivider } from '@angular/material/divider';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import {MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatOption, MatSelect} from '@angular/material/select';
+import {ToolbarComponent} from "../../../public/component/toolbar/toolbar.component";
 
 @Component({
   selector: 'app-details-wallet',
   standalone: true,
-  imports: [MatCardModule,MatLabel, MatButtonModule, CommonModule, MatDivider, ReactiveFormsModule, MatFormField, MatSelect, MatOption],
+    imports: [MatCardModule, MatLabel, MatButtonModule, CommonModule, MatDivider, ReactiveFormsModule, MatFormField, MatSelect, MatOption, ToolbarComponent],
   templateUrl: './details-wallet.component.html',
   styleUrls: ['./details-wallet.component.css']
 })

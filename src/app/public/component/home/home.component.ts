@@ -1,38 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../../iam/services/authentication.service';
+import { CompanyService } from '../../../iam/services/company.service';
+import { ActivatedRoute } from '@angular/router';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [
+    ToolbarComponent
+  ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  companyId: number | undefined;
+  companyName: string | undefined;
 
-  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService) {}
+  constructor(
+    private authService: AuthenticationService,
+    private companyService: CompanyService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.companyId = +params['companyId']; // The + sign converts the parameter to a number
+    this.route.paramMap.subscribe(params => {
+      const companyId = params.get('companyId');
+      if (companyId) {
+        this.companyService.getCompanyById(companyId).subscribe(company => {
+          this.companyName = company.name;
+        });
+      }
     });
-  }
-
-  navigateToPostBills(): void {
-    this.router.navigate([`/post-bills/${this.companyId}`]);
-  }
-
-  logOut(): void {
-    this.authService.signOut();
-  }
-
-  goBills(): void {
-    this.router.navigate([`/bills/${this.companyId}`]);
-  }
-
-  goWallets(): void {
-    this.router.navigate([`/wallets/${this.companyId}`]);
   }
 }

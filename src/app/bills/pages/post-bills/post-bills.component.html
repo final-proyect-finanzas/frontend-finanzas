@@ -1,3 +1,4 @@
+<app-toolbar></app-toolbar>
 <div class="post-bills-container">
   <mat-card>
     <mat-card-header>
@@ -9,20 +10,23 @@
           <mat-label>Número de Letra/Factura</mat-label>
           <input matInput formControlName="numeroLetra" required>
         </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Fecha de Emisión</mat-label>
-          <input matInput [matDatepicker]="picker1" formControlName="fechaEmision" required>
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Fecha de Vencimiento</mat-label>
-          <input matInput [matDatepicker]="picker2" formControlName="fechaVencimiento" required>
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
-          <mat-datepicker #picker2></mat-datepicker>
-        </mat-form-field>
+        <div class="date-fields">
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha de Emisión</mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="fechaEmision" required>
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha de Vencimiento</mat-label>
+            <input matInput [matDatepicker]="picker2" formControlName="fechaVencimiento" required>
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+            <mat-error *ngIf="form.hasError('dueDateBeforeIssueDate')">Fecha de Vencimiento debe ser mayor que Fecha de Emisión</mat-error>
+          </mat-form-field>
+        </div>
         <mat-form-field appearance="outline">
           <mat-label>Monto Total</mat-label>
           <input matInput type="number" formControlName="montoTotal" required>
@@ -35,8 +39,12 @@
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-label>Deudores</mat-label>
+          <mat-label>Deudor</mat-label>
           <input matInput type="text" formControlName="deudores" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>DNI/RUC Deudor</mat-label>
+          <input matInput formControlName="documentIdentifierDebtor" required>
         </mat-form-field>
         <div class="button-group">
           <button mat-button type="button" (click)="onBack()">Regresar</button>

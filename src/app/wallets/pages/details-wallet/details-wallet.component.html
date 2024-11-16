@@ -1,17 +1,19 @@
-<mat-card *ngIf="wallet">
-  <mat-card-title>Wallet Details</mat-card-title>
+<app-toolbar></app-toolbar>
+<mat-card *ngIf="wallet" class="detailWallet">
+  <mat-card-title>Detalles de la cartera</mat-card-title>
   <mat-card-content>
-    <p><strong>Wallet ID:</strong> {{ wallet.id }}</p>
-    <p><strong>Company ID:</strong> {{ wallet.companyId }}</p>
-    <p><strong>Is Discounted:</strong> {{ wallet.isDiscounted ? 'Yes' : 'No' }}</p>
+    <p><strong>ID Cartera:</strong> {{ wallet.id }}</p>
+    <p><strong>¿Está descontada?:</strong> {{ wallet.isDiscounted ? 'Yes' : 'No' }}</p>
+    <p *ngIf="wallet.isDiscounted"><strong>Descontada con el banco: </strong> {{wallet.bankName}}</p>
     <mat-divider></mat-divider>
     <div *ngFor="let bill of wallet.bills">
-      <p><strong>Bill Number:</strong> {{ bill.number }}</p>
-      <p><strong>Issue Date:</strong> {{ bill.issueDate | date }}</p>
-      <p><strong>Due Date:</strong> {{ bill.dueDate | date }}</p>
-      <p><strong>Amount:</strong> {{ bill.amount }}</p>
-      <p><strong>Currency:</strong> {{ bill.currency }}</p>
-      <p><strong>Debtor Name:</strong> {{ bill.debtorName }}</p>
+      <p><strong>Número de Letra/Factura:</strong> {{ bill.number }}</p>
+      <p><strong>Fecha de emisión:</strong> {{ bill.issueDate | date }}</p>
+      <p><strong>Fecha de vencimiento:</strong> {{ bill.dueDate | date }}</p>
+      <p><strong>Valor:</strong> {{ bill.amount }}</p>
+      <p><strong>Moneda:</strong> {{ bill.currency }}</p>
+      <p><strong>Deudor:</strong> {{ bill.debtorName }}</p>
+      <p><strong>DNI/RUC Deudor:</strong> {{ bill.debtorDocumentIdentifier }}</p>
       <mat-divider></mat-divider>
     </div>
     <div *ngIf="!wallet.isDiscounted">
@@ -19,7 +21,7 @@
         <mat-label>Select Bank</mat-label>
         <mat-select [formControl]="selectedBankId">
           <mat-option *ngFor="let bank of banks" [value]="bank.id">
-            {{ bank.name }} - Rate: {{ bank.rate }} {{ bank.typeRate }}
+            {{ bank.name }} - Tasa: {{ bank.rate }}%  {{ bank.typeRate }} - Costo por documento: {{ bank.initialCostPerDocument }} - Portes iniciales: {{ bank.initialPortes }} - Comision Final: {{ bank.finalCommission }}
           </mat-option>
         </mat-select>
       </mat-form-field>

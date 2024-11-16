@@ -3,11 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { WalletService } from '../../services/wallet.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { NgIf } from '@angular/common';
+import {ToolbarComponent} from "../../../public/component/toolbar/toolbar.component";
 
 @Component({
   selector: 'app-report-wallet',
   standalone: true,
-  imports: [NgIf],
+    imports: [NgIf, ToolbarComponent],
   templateUrl: './report-wallet.component.html',
   styleUrls: ['./report-wallet.component.css']
 })

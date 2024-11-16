@@ -4,13 +4,14 @@ import { WalletService } from '../../services/wallet.service';
 import { Wallet } from '../../model/wallet';
 import {MatCardModule} from '@angular/material/card';
 import {MatDivider} from '@angular/material/divider';
-import {DatePipe, NgForOf, NgIf} from '@angular/common';
+import {DatePipe, NgClass, NgForOf, NgIf} from '@angular/common';
 import {MatButton} from '@angular/material/button';
+import {ToolbarComponent} from "../../../public/component/toolbar/toolbar.component";
 
 @Component({
   selector: 'app-view-wallets',
   standalone: true,
-  imports: [MatCardModule, MatDivider, DatePipe, NgIf, NgForOf, MatButton, RouterLink],
+    imports: [MatCardModule, MatDivider, DatePipe, NgIf, NgForOf, MatButton, RouterLink, NgClass, ToolbarComponent],
   templateUrl: './view-wallets.component.html',
   styleUrl: './view-wallets.component.css'
 })
