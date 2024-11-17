@@ -7,8 +7,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
-import {MatNativeDateModule} from '@angular/material/core';
+import {MatNativeDateModule, MatOption} from '@angular/material/core';
 import {ToolbarComponent} from '../../../public/component/toolbar/toolbar.component';
+import {MatSelect} from '@angular/material/select';
 
 @Component({
   selector: 'app-create-wallets',
@@ -21,7 +22,9 @@ import {ToolbarComponent} from '../../../public/component/toolbar/toolbar.compon
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    ToolbarComponent
+    ToolbarComponent,
+    MatSelect,
+    MatOption
   ],
   templateUrl: './create-wallets.component.html',
   styleUrls: ['./create-wallets.component.css']
@@ -37,7 +40,8 @@ export class CreateWalletsComponent implements OnInit {
     private walletService: WalletService
   ) {
     this.createWalletForm = this.fb.group({
-      discountDate: ['', Validators.required]
+      discountDate: ['', Validators.required],
+      currency: ['', Validators.required]
     });
   }
 
@@ -49,7 +53,8 @@ export class CreateWalletsComponent implements OnInit {
     if (this.createWalletForm.valid && this.companyId) {
       const walletData = {
         companyId: this.companyId,
-        discountDate: this.createWalletForm.value.discountDate
+        discountDate: this.createWalletForm.value.discountDate,
+        currency: this.createWalletForm.value.currency
       };
       this.walletService.createWallet(walletData).subscribe(() => {
         this.router.navigate([`/wallets/${this.companyId}`]);

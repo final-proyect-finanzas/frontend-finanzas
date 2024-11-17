@@ -1,14 +1,22 @@
 <app-toolbar></app-toolbar>
 <mat-card>
-  <mat-card-title>Create Wallet</mat-card-title>
+  <mat-card-title>Crear una cartera</mat-card-title>
   <mat-card-content>
     <form [formGroup]="createWalletForm" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="outline">
-        <mat-label>Discount Date</mat-label>
+        <mat-label>Fecha de descuento</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="discountDate" required>
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
+        <!--Currency to select between PEN or USD-->
+      </mat-form-field>
+      <mat-label>Moneda de la cartera</mat-label>
+      <mat-form-field appearance="outline">
+        <mat-select formControlName="currency" required>
+          <mat-option value="PEN">PEN</mat-option>
+          <mat-option value="USD">USD</mat-option>
+        </mat-select>
       </mat-form-field>
       <div>
         <button mat-button type="button" (click)="onCancel()">Cancel</button>

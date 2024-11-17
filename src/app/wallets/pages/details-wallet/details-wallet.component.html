@@ -22,6 +22,7 @@
         <mat-select [formControl]="selectedBankId">
           <mat-option *ngFor="let bank of banks" [value]="bank.id">
             {{ bank.name }} - Tasa: {{ bank.rate }}%  {{ bank.typeRate }} - Costo por documento: {{ bank.initialCostPerDocument }} - Portes iniciales: {{ bank.initialPortes }} - Comision Final: {{ bank.finalCommission }}
+            <span *ngIf="bank.typeRate.startsWith('TN')"> - Capitalization: {{ bank.capitalization }}</span>
           </mat-option>
         </mat-select>
       </mat-form-field>
